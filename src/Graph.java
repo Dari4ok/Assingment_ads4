@@ -203,4 +203,36 @@ public class Graph {
             System.out.println();
         }
     }
+
+    public void removeVertex(Vertex vertex) {
+        if (!hasVertex(vertex)) return;
+        map.remove(vertex);
+
+        for (List<Edge> edges : map.values()) {
+            edges.removeIf(edge -> edge.getDest().equals(vertex));
+        }
+
+        if (undirected) {
+            for (Vertex v : getVertices()) {
+                map.get(v).removeIf(edge -> edge.getDest().equals(vertex));
+            }
+        }
+    }
+
+    public void removeEdge(Vertex source, Vertex dest) {
+        if (!hasEdge(source, dest)) return;
+        map.get(source).removeIf(edge -> edge.getDest().equals(dest));
+        if (undirected) {
+            map.get(dest).removeIf(edge -> edge.getDest().equals(source));
+        }
+    }
+
+    public List<Vertex> getNeighbors(Vertex vertex) {
+        if (!hasVertex(vertex)) return new ArrayList<>();
+        List<Vertex> neighbors = new ArrayList<>();
+        for (Edge edge : map.get(vertex)) {
+            neighbors.add(edge.getDest());
+        }
+        return neighbors;
+    }
 }

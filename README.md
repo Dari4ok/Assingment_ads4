@@ -13,8 +13,6 @@ This will execute the main method in the GraphTest class, which performs the fol
 3.Adds edges between some of the vertices.
 4.Checks for the existence of certain edges and prints the results.
 5.Retrieves and prints the neighbors of a specific vertex.
-
 6.Prints the graph.
-
 7.Removes an edge and prints the graph again to show the change.
 

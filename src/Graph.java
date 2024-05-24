@@ -160,6 +160,52 @@ public class Graph {
         return true;
     }
 
+    //Dijkstra shortest path search. prints all paths
+    public Map<Vertex, Integer> dijkstra(Vertex start) {
+        Map<Vertex, Integer> distances = new HashMap<>();
+        Map<Vertex, Vertex> previous = new HashMap<>();
+        PriorityQueue<Vertex> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
+
+        for (Vertex vertex : map.keySet()) {
+            if (vertex.equals(start)) {
+                distances.put(vertex, 0);
+            } else {
+                distances.put(vertex, Integer.MAX_VALUE);
+            }
+            priorityQueue.add(vertex);
+        }
+
+        while (!priorityQueue.isEmpty()) {
+            Vertex current = priorityQueue.poll();
+
+            for (Edge edge : map.get(current)) {
+                Vertex neighbor = edge.getDest();
+                int newDist = distances.get(current) + edge.getWeight();
+
+                if (newDist < distances.get(neighbor)) {
+                    priorityQueue.remove(neighbor);
+                    distances.put(neighbor, newDist);
+                    previous.put(neighbor, current);
+                    priorityQueue.add(neighbor);
+                }
+            }
+        }
+
+        return distances;
+    }
+
+    public void printGraph() {
+        for (Vertex vertex : map.keySet()) {
+            System.out.print("Vertex " + vertex + " is connected to: ");
+            for (Edge edge : map.get(vertex)) {
+                System.out.print(edge.dest + " (weight " + edge.weight + "), ");
+            }
+            System.out.println();
+        }
+    }
+
+
+
 
 
 

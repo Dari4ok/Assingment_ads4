@@ -103,6 +103,3 @@ The `Edge` class represents an edge in the graph.
 - `int getWeight()`: Returns the weight of the edge.
 - `String toString()`: Returns a string representation of the edge.
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any changes.

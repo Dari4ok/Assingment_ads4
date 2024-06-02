@@ -7,7 +7,7 @@ GraphTest is a Java project that demonstrates the creation and manipulation of a
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/yourusername/graphtest.git
+git clone https://github.com/dari4ok/graphtest.git
 cd graphtest
 ```
 
